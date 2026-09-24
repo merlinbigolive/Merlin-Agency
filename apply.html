@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Work From Home | Join Merlin Agency | Zero Joining Fee</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="apply-page">
+<div class="form-wrap">
+  <a class="back" href="index.html">← BACK TO MERLIN</a>
+  <div class="form-card">
+    <div class="eyebrow"><span></span> MERLIN <span></span></div>
+    <h1>APPLY <em>NOW</em></h1>
+    <p>Complete your details and continue on WhatsApp.</p>
+    <form id="applyForm">
+      <label>FULL NAME<input id="name" required placeholder="Enter your full name"></label>
+      <label>AGE<input id="age" type="number" min="18" max="100" required placeholder="18+"></label>
+      <label>GENDER<select id="gender" required><option value="">Select gender</option><option>Male</option><option>Female</option><option>Other</option><option>Prefer not to say</option></select></label>
+      <label>TALENT<select id="talent" required><option value="">Select your talent</option><option>Artist</option><option>Student</option><option>Working</option><option>Housewife</option><option>Singer</option><option>Comedian</option><option>Dancer</option><option>Magician</option><option>Chating</option><option>Other</option></select></label>
+      <button class="apply submit" type="submit">CONTINUE ON WHATSAPP <span>→</span></button>
+    </form>
+  </div>
+</div>
+<script>
+document.getElementById('applyForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('name').value.trim();
+  const age = document.getElementById('age').value.trim();
+  const gender = document.getElementById('gender').value;
+  const talent = document.getElementById('talent').value;
+
+  const message = [
+    'MERLIN HOST APPLICATION',
+    '',
+    'Name: ' + name,
+    'Age: ' + age,
+    'Gender: ' + gender,
+    'Talent: ' + talent
+  ].join('\n');
+
+  const encoded = encodeURIComponent(message);
+  const phone = '918178949463';
+
+  // Open the installed WhatsApp Android app directly.
+  // This intentionally targets the normal WhatsApp package, not WhatsApp Business.
+  const whatsappIntent =
+    'intent://send?phone=' + phone + '&text=' + encoded +
+    '#Intent;scheme=whatsapp;package=com.whatsapp;end';
+
+  // Android: explicitly launch the regular WhatsApp app only.
+  // No wa.me / https fallback is used, so WhatsApp Web is never opened.
+  window.location.replace(whatsappIntent);
+});
+</script>
+</body>
+</html>
